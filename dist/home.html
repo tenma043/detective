@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Detective Club</title>
+    <style>
+        body {
+            background:white;
+        }
+    </style>
+</head>
+
+<body>
+    <template>
+        <v-app id="app2">
+          <v-navigation-drawer
+            v-model="drawer"
+            app
+          >
+            <v-list dense>
+              <v-list-item link>
+                <v-list-item-action>
+                  <v-icon>mdi-home</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Home</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item link>
+                <v-list-item-action>
+                  <v-icon>mdi-contact-mail</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>
+                  <v-list-item-title>Contact</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-navigation-drawer>
+      
+          <v-app-bar
+            app
+            color="indigo"
+            dark
+          >
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+            <v-toolbar-title>Application</v-toolbar-title>
+          </v-app-bar>
+      
+          <v-content>
+            <v-container
+              class="fill-height"
+              fluid
+            >
+              <v-row
+                align="center"
+                justify="center"
+              >
+                <v-col class="text-center">
+                  <v-tooltip left>
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        :href="source"
+                        icon
+                        large
+                        target="_blank"
+                        v-on="on"
+                      >
+                        <v-icon large>mdi-code-tags</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Source</span>
+                  </v-tooltip>
+      
+                  <v-tooltip right>
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        icon
+                        large
+                        href="https://codepen.io/johnjleider/pen/zgxeLQ"
+                        target="_blank"
+                        v-on="on"
+                      >
+                        <v-icon large>mdi-codepen</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>Codepen</span>
+                  </v-tooltip>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-content>
+          <v-footer
+            color="indigo"
+            app
+          >
+            <span class="white--text">&copy; 2019</span>
+          </v-footer>
+        </v-app>
+      </template>
+      <p>Hello Test</p>
+    <script></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" charset="utf-8"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="vue.js" type='text/javascript'></script>
+</body>
+
+</html>
