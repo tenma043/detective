@@ -1,8 +1,6 @@
 const express = require('express')
 const app = express()
-// const server = require('http').Server(app)
 const serverless = require('serverless-http')
-// const io = require('socket.io')(server,{serveClient:false})
 const router = express.Router()
 const path = require('path')
 process.env.SILENCE_EMPTY_LAMBDA_WARNING=true
@@ -21,5 +19,5 @@ router.get('/',(req,res)=>{
     res.sendFile('home.html',{root:root})
 })
 
-module.exports = app
+// module.exports = app
 module.exports.handler = serverless(app)
