@@ -10,9 +10,15 @@ var message="Waiting"
 
 app.use(bodyparser.json())
 app.use(express.static('../dist'));
-app.use('/.netlify/functions/app',router)
+// app.use('/.netlify/functions/app',router)
 app.listen(9500)
 // for local
+app.get('/.netlify/functions/app/',(req,res)=>{
+    let root=path.join(__dirname,'../source/myapp/dist')
+    res.sendFile('home.html',{root:root})
+app.get('/.netlify/functions/app/test3',(req,res)=>{
+    let root=path.join(__dirname,'../source/myapp/dist')
+    res.sendFile('home.html',{root:root})
 app.get('/',(req,res)=>{
     res.sendFile('home.html',{root:"../dist"})
 })
