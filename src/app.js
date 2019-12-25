@@ -22,6 +22,11 @@ app.post('/polling',(req,res)=>{
     res.json({message:count})
 })
 //for product
+app.get('/test2',(req,res)=>{
+    let root=path.join(__dirname,'../source/myapp/dist')
+    res.sendFile('home.html',{root:root})
+})
+
 router.get('/',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
     res.sendFile('home.html',{root:root})
