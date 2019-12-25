@@ -8,9 +8,9 @@ process.env.SILENCE_EMPTY_LAMBDA_WARNING=true
 var count=60
 var message="Waiting"
 
-app.use(bodyparser)
+app.use(bodyparser.json())
 app.use(express.static('../dist'));
-app.use('/.netlify/functions/app',router)
+app.use('/.netlify/functions/*',router)
 app.listen(9500)
 // for local
 app.get('/',(req,res)=>{
