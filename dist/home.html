@@ -4,16 +4,13 @@
 <head>
     <title>Detective Club</title>
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <style>
       html, body
-      {
-          min-height: 100vh;
-      }
-      #wrapper
-      {
-          position:relative;
-          min-height:100%;
+      { 
+        margin:0; /* remove default margin */
+        padding:0; /* remove default padding */
+        height: 100%;
       }
     </style>
 </head>
@@ -31,7 +28,7 @@
             <v-toolbar-side-icon >
                 <v-img max-height=50 max-width=50 src="https://image.flaticon.com/icons/png/512/69/premium/69052.png" />
             </v-toolbar-side-icon> 
-              <v-toolbar-title> &nbsp; &nbsp; Detective Club 1</v-toolbar-title>
+              <v-toolbar-title> &nbsp; &nbsp; Detective Club </v-toolbar-title>
             </v-app-bar>
         
             <v-content >
