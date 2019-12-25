@@ -35,7 +35,7 @@ router.get('/test',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
     res.sendFile('home.html',{root:root})
 })
-router.get('/set',(req,res)=>{
+router.post('/set',(req,res)=>{
     message = req.body.message
     res.json({message:message})
 })

@@ -42,7 +42,7 @@
                       <v-row  align="center"  justify="center" >
                           {{message}}
                           </v-row>
-                      <v-text-field>{{newmessage}}</v-text-field>
+                      <v-text-field v-model="newmessage"></v-text-field>
                       <v-btn @click="set()"></v-btn>
                   </v-col>
               </v-container>
@@ -69,26 +69,27 @@
                 },
         data: () => ({
                 message: "Waiting",
-                newmessage: "",
+                newmessage: "SomethingNew",
                 role: "No Role2",
                 drawer: null,
                 }),
         methods: {
-          set: ()=>{
-            alert(this.newmessage)
-            axios.get("/.netlify/functions/app/set",{message:"Q"})
+          set: function(){
+            console.log(this.newmessage)
+            axios.post("/.netlify/functions/app/set",{message:this.newmessage})
           .then((res)=>{
             this.message=res.data.message
+            
            })     
           }
         },
         created() {
-          // setInterval(()=>{
-          //   axios.post('/polling')
-          // .then((res)=>{
-          //   this.message=res.data.message
-          //  })        
-          // },1000)
+          setInterval(()=>{
+            axios.post('/.netlify/functions/app/polling')
+          .then((res)=>{
+            this.message=res.data.message
+           })        
+          },1000)
            
           // setInterval(()=>{
           // axios.post('/polling')
