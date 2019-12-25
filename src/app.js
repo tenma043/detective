@@ -19,9 +19,9 @@ app.listen(9500)
 app.get('/.netlify/functions/app/test3',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
     res.sendFile('home.html',{root:root})
-app.get('/',(req,res)=>{
-    res.sendFile('home.html',{root:"../dist"})
-})
+// app.get('/',(req,res)=>{
+//     res.sendFile('home.html',{root:"../dist"})
+// })
 
 app.post('/polling',(req,res)=>{
     count-=1
