@@ -76,9 +76,7 @@
         methods: {
           set: ()=>{
             alert(this.newmessage)
-            axios({
-              url: "https://detective-club.netlify.com/",
-              method: "GET"})
+            axios.get("/.netlify/functions/app/set",{message:"Q"})
           .then((res)=>{
             this.message=res.data.message
            })     
