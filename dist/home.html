@@ -10,10 +10,10 @@
       padding: 0;
       overflow: hidden;
     }
-    body>div{
+    /* body>div{
       max-height: 33.3vh;
       overflow-x: auto;
-    }
+    } */
     </style>
 </head>
 
@@ -30,36 +30,20 @@
             <v-toolbar-side-icon >
                 <v-img max-height=50 max-width=50 src="https://image.flaticon.com/icons/png/512/69/premium/69052.png" />
             </v-toolbar-side-icon> 
-              <v-toolbar-title> &nbsp; Detective Club </v-toolbar-title>
+              <v-toolbar-title> &nbsp; &nbsp; Detective Club </v-toolbar-title>
             </v-app-bar>
         
-            <v-content>
-              <v-container
-                class="fill-height"
-                fluid
-              >
-                <v-row
+            <v-content >
+              <v-container fluid overflow-y:auto>
+                <!-- <v-row
                   align="center"
                   justify="center"
                 >
                   <v-col class="text-center">
-                    <v-tooltip left>
-                      <template v-slot:activator="{ on }">
-                        <v-btn
-                          :href="source"
-                          icon
-                          large
-                          target="_blank"
-                          v-on="on"
-                        >
-                          <v-icon large>mdi-code-tags</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Source</span>
-                    </v-tooltip>
-        
+                      <span>{{role}}</span>
+                      {{message}}
                   </v-col>
-                </v-row>
+                </v-row> -->
               </v-container>
             </v-content>
             <v-footer
@@ -83,7 +67,8 @@
                 source: String,
                 },
         data: () => ({
-                message: "Hello Vue",
+                message: "Waiting",
+                role: "No Role",
                 drawer: null,
                 }),
         })
