@@ -10,7 +10,7 @@ var message="Waiting"
 
 app.use(bodyparser.json())
 app.use(express.static('../dist'));
-app.use('/.netlify/functions/*',router)
+app.use('/.netlify/functions/app',router)
 app.listen(9500)
 // for local
 app.get('/',(req,res)=>{
@@ -26,7 +26,10 @@ router.get('/',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
     res.sendFile('home.html',{root:root})
 })
-
+router.get('/test',(req,res)=>{
+    let root=path.join(__dirname,'../source/myapp/dist')
+    res.sendFile('home.html',{root:root})
+})
 router.get('/set',(req,res)=>{
     message = req.body.message
     res.json({message:message})
