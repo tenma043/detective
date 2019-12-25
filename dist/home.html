@@ -77,9 +77,8 @@
           set: ()=>{
             alert(this.newmessage)
             axios({
-              hostname: "https://detective-club.netlify.com",
-              method: "GET",
-              path: "/test"})
+              url: "https://detective-club.netlify.com/test",
+              method: "GET"})
           .then((res)=>{
             this.message=res.data.message
            })     
