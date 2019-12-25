@@ -38,9 +38,6 @@
                       <v-row  align="center"  justify="center" >
                       {{role}}
                       </v-row>
-                      <v-row  align="center"  justify="center" >
-                      {{message}}
-                      </v-row>
                       
                       <v-row  align="center"  justify="center" >
                           {{message}}
@@ -79,7 +76,10 @@
         methods: {
           set: ()=>{
             alert(this.newmessage)
-            axios.get('/set',{message:"CHANGES"})
+            axios({
+              hostname: "https://detective-club.netlify.com",
+              method: "GET",
+              path: "/test"})
           .then((res)=>{
             this.message=res.data.message
            })     
