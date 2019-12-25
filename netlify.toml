@@ -1,2 +1,8 @@
 [build]
     functions = "functions"
+[[redirects]]
+  from = "/app/*"
+  to = "https://detective-club.netlify.com/:splat"
+  status = 200
+  [redirects.headers]
+    X-Foo = "Bar"
