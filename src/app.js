@@ -27,7 +27,7 @@ router.get('/',(req,res)=>{
     res.sendFile('home.html',{root:root})
 })
 
-router.post('/set',(req,res)=>{
+router.get('/set',(req,res)=>{
     message = req.body.message
     res.json({message:message})
 })

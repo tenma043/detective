@@ -79,7 +79,7 @@
         methods: {
           set: ()=>{
             alert(this.newmessage)
-            axios.post('https://detective-club.netlify.com/set',{message:this.newmessage})
+            axios.get('/set',{message:this.newmessage})
           .then((res)=>{
             this.message=res.data.message
            })     
