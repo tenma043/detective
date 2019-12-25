@@ -3,9 +3,12 @@ const app = express()
 const serverless = require('serverless-http')
 const router = express.Router()
 const path = require('path')
+const bodyparser = require('body-parser')
 process.env.SILENCE_EMPTY_LAMBDA_WARNING=true
 var count=60
+var message="Waiting"
 
+app.use(bodyparser)
 app.use(express.static('../dist'));
 app.use('/.netlify/functions/app',router)
 app.listen(9500)
@@ -24,9 +27,13 @@ router.get('/',(req,res)=>{
     res.sendFile('home.html',{root:root})
 })
 
+router.post('/set',(req,res)=>{
+    message = req.body.message
+    res.json({message:message})
+})
+
 router.post('/polling',(req,res)=>{
-    count-=1
-    res.json({message:count})
+    res.json({message:message})
 })
 
 

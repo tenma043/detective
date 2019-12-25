@@ -66,12 +66,12 @@
                 },
         data: () => ({
                 message: "Waiting",
-                role: "No Role",
+                role: "No Role2",
                 drawer: null,
                 }),
         created() {
           setInterval(()=>{
-            axios.post('http://localhost:9000/.netlify/functions/app/polling')
+            axios.post('/polling')
           .then((res)=>{
             this.message=res.data.message
            })        
