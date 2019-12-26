@@ -4,23 +4,22 @@ const serverless = require('serverless-http')
 const router = express.Router()
 const path = require('path')
 const bodyparser = require('body-parser')
+const cookieparser = require('cookie-parser')
 process.env.SILENCE_EMPTY_LAMBDA_WARNING=true
-var count=60
+var count=0
 var message="Waiting"
+var members=[]
 
-app.use(bodyparser.json())
+app.use(cookieparser())
+app.use(bodyparser())
 app.use(express.static('../dist'));
 app.use('/.netlify/functions/app',router)
-app.listen(9500)
+// app.listen(9500)
 // for local
 app.get('/',(req,res)=>{
     res.sendFile('home.html',{root:"../dist"})
 })
 
-app.post('/polling',(req,res)=>{
-    count-=1
-    res.json({message:count})
-})
 //for product
 app.get('/test',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
@@ -31,17 +30,30 @@ router.get('/',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
     res.sendFile('home.html',{root:root})
 })
-router.get('/test',(req,res)=>{
+
+router.post('/room',(req,res)=>{
+    count+=1
+    members[count-1]=req.body.id
+    res.cookie('id',req.body.id,{MaxAge:1000*60*60})
     let root=path.join(__dirname,'../source/myapp/dist')
-    res.sendFile('home.html',{root:root})
+    res.sendFile('room.html',{root:root})
 })
+
 router.post('/set',(req,res)=>{
     message = req.body.message
+    console.log(req.cookies.id)
     res.json({message:message})
 })
 
+router.post('/close',(req,res)=>{
+    console.log("CLOSING")
+    members=[]
+    count=0
+    res.json({})
+})
+
 router.post('/polling',(req,res)=>{
-    res.json({message:message})
+    res.json({message:message,members:members,count:count})
 })
 
 

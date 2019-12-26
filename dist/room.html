@@ -31,12 +31,10 @@
               <v-toolbar-title> &nbsp; &nbsp; Detective Club </v-toolbar-title>
             </v-app-bar>
         
-            <v-content>
-              <v-container
-                class="fill-height"
-                fluid
-              >
-                <v-row
+            <v-content >
+              <v-container fluid overflow-y:auto>
+                
+                      <v-row
                   align="center"
                   justify="center"
                 >
@@ -53,35 +51,28 @@
                         height="40"
                       >
                       </v-toolbar>
-                      <v-form method="POST" action="/.netlify/functions/app/room">
+                      <v-form method="GET" action="/.netlify/functions/app/send">
                       <v-card-text>
-                          <v-text-field
-                          label="Display Name"
-                          name="id"
-                          type="text"
-                          maxlength="15">
-                        >
-                        </v-text-field>
+                        There are {{count}} players
+                        <li v-for="(member,index) in members">
+                            
+                             {{ member }}
+                        </li>
                       </v-card-text>
-                      <!-- <v-card-text>
-                          <v-text-field
-                            label="Room Code"
-                            name="room"
-                            type="text"
-                            maxlength="6"
-                     /></v-card-text> -->
                         
                       <v-card-actions class="justify-center">
-                      <v-btn type="submit" color="primary">Join</v-btn>
+                      <v-btn type="submit" color="primary">Send</v-btn>
                       </v-card-actions>
                     </v-form>
+                    <v-card-actions class="justify-center">
+                        <v-btn @click="close" color="primary">Close Room</v-btn>
+                    </v-card-actions>
                       
                     </v-card>
                   </v-col>
                 </v-row>
               </v-container>
             </v-content>
-
             <v-footer
               color="blue accent-2"
               app
@@ -107,6 +98,8 @@
                 newmessage: "SomethingNew",
                 role: "No Role2",
                 drawer: null,
+                count: 0,
+                members: null,
                 }),
         methods: {
           set: function(){
@@ -116,14 +109,28 @@
             this.message=res.data.message
            })     
           },
+          close: function(){
+            axios.post("/.netlify/functions/app/close")
+          .then((res)=>{
+            this.message=res.data.message
+           })  
+          }
         },
         created() {
-          // setInterval(()=>{
-          //   axios.post('/.netlify/functions/app/polling')
-          // .then((res)=>{
-          //   this.message=res.data.message
-          //  })        
-          // },1000)
+          interval = setInterval(()=>{
+            axios.post('/.netlify/functions/app/polling')
+          .then((res)=>{
+            this.members=res.data.members
+            this.count=res.data.count
+            this.message=res.data.message
+            this.status=res.data.status
+            console.log(this.members)
+            if(this.count==0){
+              clearInterval(interval)
+              window.location.replace("/.netlify/functions/app");
+            }
+           })        
+          },1000)
            
           // setInterval(()=>{
           // axios.post('/polling')
