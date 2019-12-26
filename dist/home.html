@@ -80,6 +80,9 @@
                     </v-card>
                   </v-col>
                 </v-row>
+                <v-card-actions class="justify-center">
+                  <v-btn @click="reset" color="primary">Reset</v-btn>
+                  </v-card-actions>
               </v-container>
             </v-content>
 
@@ -117,6 +120,12 @@
             .then((res)=>{
             this.message=res.data.message
            })     
+          },
+          reset: function(){
+            axios.post("/.netlify/functions/app/reset")
+            .then((res)=>{
+              window.location.replace("/");
+            })
           },
           join: function(){
             axios.post("/.netlify/functions/app/join",{id:this.name})

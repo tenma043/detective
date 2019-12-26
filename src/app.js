@@ -11,6 +11,7 @@ var message="Waiting"
 var members=[]
 var roles=[]
 var page=""
+var start=false
 
 app.use(cookieparser())
 app.use(bodyparser())
@@ -56,14 +57,7 @@ router.post('/set',(req,res)=>{
 })
 
 router.post('/start',(req,res)=>{
-
-    let active = members.findIndex(item=>{return item==req.cookies.id}) 
-    if (active==req.body.active){
-        page = "/active"
-    }
-    else {
-        page = "/player"
-    }
+    start=true
     res.json({page:page})
 })
 
@@ -75,7 +69,28 @@ router.post('/close',(req,res)=>{
     res.json({})
 })
 
+
+router.post('/reset',(req,res)=>{
+    count=0
+    message="Waiting"
+    members=[]
+    roles=[]
+    page=""
+    start=false
+    res.json({})
+})
+
+
 router.post('/polling',(req,res)=>{
+    if(start){
+    let active = members.findIndex(item=>{return item==req.cookies.id}) 
+    if (active==req.body.active){
+        page = "/active"
+    }
+    else {
+        page = "/player"
+    }
+    }
     res.json({message:message,members:members,count:count,page:page})
 })
 
