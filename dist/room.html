@@ -54,10 +54,14 @@
                       <v-form method="GET" action="/.netlify/functions/app/send">
                       <v-card-text>
                         There are {{count}} players
-                        <li v-for="(member,index) in members">
-                            
-                             {{ member }}
-                        </li>
+                        <v-radio-group v-model="active">
+                          <v-radio
+                            v-for="(member,index) in members"
+                            :key="index"
+                            :label="member"
+                            :value="index"
+                          ></v-radio>
+                        </v-radio-group>
                       </v-card-text>
                         
                       <v-card-actions class="justify-center">
