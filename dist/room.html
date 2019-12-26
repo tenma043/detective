@@ -138,10 +138,10 @@
             this.status=res.data.status
             this.nextpage=res.data.page           
             console.log(this.members)
-            // if(this.count==0){
-            //   clearInterval(interval)
-            //   window.location.replace("/");
-            // }
+            if(this.count==0){
+              clearInterval(interval)
+              window.location.replace("/");
+            }
             if(this.nextpage!=""){
             window.location.replace(this.nextpage);
             }
