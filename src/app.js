@@ -71,6 +71,7 @@ router.post('/close',(req,res)=>{
     console.log("CLOSING")
     members=[]
     count=0
+    page=""
     res.json({})
 })
 
