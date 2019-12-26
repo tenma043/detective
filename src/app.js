@@ -11,6 +11,7 @@ var message="Waiting"
 var members=[]
 var role="Detective"
 var page=""
+var page2=""
 var start=false
 var active=0
 var word=""
@@ -80,13 +81,16 @@ router.post('/end',(req,res)=>{
     res.json({})
 })
 
-router.post('/reset',(req,res)=>{
+router.post('/reset',(req,res) => {
     count=0
     message="Waiting"
     members=[]
-    roles=[]
+    role="Detective"
     page=""
+    page2=""
     start=false
+    active=0
+    word=""
     end=false
     res.json({})
 })
@@ -106,8 +110,8 @@ router.post('/polling',(req,res)=>{
 })
 
 router.post('/polling2',(req,res)=>{
-    if(end){page="/room"}
-    res.json({role:role,word:word,page:page})
+    if(end){page2="/room"}
+    res.json({role:role,word:word,page:page2})
 })
 
 module.exports = app
