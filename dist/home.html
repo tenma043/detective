@@ -135,12 +135,12 @@
           }
         },
         created() {
-          setInterval(()=>{
-            axios.post('/.netlify/functions/app/polling')
-          .then((res)=>{
-            this.message=res.data.message
-           })        
-          },1000)
+          // setInterval(()=>{
+          //   axios.post('/.netlify/functions/app/polling')
+          // .then((res)=>{
+          //   this.message=res.data.message
+          //  })        
+          // },1000)
            
           // setInterval(()=>{
           // axios.post('/polling')

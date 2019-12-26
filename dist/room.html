@@ -123,7 +123,7 @@
           },
           start: function(){
             console.log("ACTIVE =",this.active)
-            axios.post("/.netlify/functions/app/start",{active:this.active})
+            axios.post("/.netlify/functions/app/start")
           .then((res)=>{
             this.startpage = res.data.page
            })  
@@ -131,7 +131,7 @@
         },
         created() {
           interval = setInterval(()=>{
-            axios.post('/.netlify/functions/app/polling')
+            axios.post('/.netlify/functions/app/polling',{active:this.active})
           .then((res)=>{
             this.members=res.data.members
             this.count=res.data.count
