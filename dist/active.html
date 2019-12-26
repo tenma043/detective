@@ -52,6 +52,8 @@
                         <br>
                         <br>
                         <v-text-field v-model="word" label="Choose the word"></v-text-field>
+                        <br>
+                        {{alreadysend}}
                       </v-card-text>
                         
                       <v-card-actions class="justify-center">
@@ -97,13 +99,14 @@
                 nextpage: "",
                 role: "",
                 word: "",
+                alreadysend: null
                 }),
         methods: {
           send: function(){
             console.log(this.newmessage)
             axios.post("/.netlify/functions/app/send",{word:this.word})
           .then((res)=>{
-           
+            this.alreadysend="You have sent the word!"
            })     
           },
            end: function(){
