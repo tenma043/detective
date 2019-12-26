@@ -105,6 +105,7 @@
                 count: 0,
                 members: null,
                 active: 0,
+                startpage: ""
                 }),
         methods: {
           set: function(){
@@ -124,7 +125,7 @@
             console.log("ACTIVE =",this.active)
             axios.post("/.netlify/functions/app/start",{active:this.active})
           .then((res)=>{
-            window.location.replace(res.data.page);
+            this.startpage = res.data.page
            })  
           }
         },
@@ -140,6 +141,9 @@
             if(this.count==0){
               clearInterval(interval)
               window.location.replace("/");
+            }
+            if(this.startpage!=""){
+            window.location.replace(this.startpage);
             }
            })        
           },1000)
