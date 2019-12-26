@@ -69,7 +69,7 @@
                       <v-btn @click="start" color="primary">Start</v-btn>
                       </v-card-actions>
                     <v-card-actions class="justify-center">
-                        <v-btn @click="close" color="primary">Close Room</v-btn>
+                        <v-btn @click="close" color="primary">Back</v-btn>
                     </v-card-actions>
                       
                     </v-card>
@@ -118,7 +118,7 @@
           close: function(){
             axios.post("/.netlify/functions/app/close")
           .then((res)=>{
-            this.message=res.data.message
+            window.location.replace("/");
            })  
           },
           start: function(){
@@ -138,10 +138,10 @@
             this.status=res.data.status
             this.nextpage=res.data.page           
             console.log(this.members)
-            if(this.count==0){
-              clearInterval(interval)
-              window.location.replace("/");
-            }
+            // if(this.count==0){
+            //   clearInterval(interval)
+            //   window.location.replace("/");
+            // }
             if(this.nextpage!=""){
             window.location.replace(this.nextpage);
             }
