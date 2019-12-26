@@ -33,7 +33,7 @@ router.get('/',(req,res)=>{
 
 router.get('/room',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
-    res.sendFile('room.html',{root:root})
+    res.sendFile('room2.html',{root:root})
 })
 
 router.post('/join',(req,res)=>{
