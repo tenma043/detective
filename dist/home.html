@@ -121,7 +121,7 @@
           join: function(){
             axios.post("/.netlify/functions/app/join",{id:this.name})
             .then((res)=>{
-              window.location.replace("/.netlify/functions/app/room");
+              window.location.replace("/room");
             })
           }
         },
