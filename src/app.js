@@ -77,6 +77,7 @@ router.post('/close',(req,res)=>{
 router.post('/end',(req,res)=>{
     word=""
     page=""
+    start=false
     end=true
     res.json({})
 })
