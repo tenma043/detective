@@ -54,11 +54,11 @@
                       <v-form>
                       <v-card-text>
                         There are {{count}} players
-                        <v-radio-group v-model="active">
+                        <v-radio-group lebel="Choose Active Player" v-model="active">
                           <v-radio
                             v-for="(member,index) in members"
                             :key="index"
-                            :label="`Radio ${member}`"
+                            :label="member"
                             :value="index"
                           ></v-radio>
                         </v-radio-group>
@@ -105,7 +105,7 @@
                 count: 0,
                 members: null,
                 active: 0,
-                startpage: ""
+                nextpage: ""
                 }),
         methods: {
           set: function(){
@@ -137,13 +137,14 @@
             this.count=res.data.count
             this.message=res.data.message
             this.status=res.data.status
+            this.nextpage=res.data.page           
             console.log(this.members)
             if(this.count==0){
               clearInterval(interval)
               window.location.replace("/");
             }
-            if(this.startpage!=""){
-            window.location.replace(this.startpage);
+            if(this.nextpage!=""){
+            window.location.replace(this.nextpage);
             }
            })        
           },1000)

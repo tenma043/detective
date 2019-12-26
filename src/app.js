@@ -10,6 +10,7 @@ var count=0
 var message="Waiting"
 var members=[]
 var roles=[]
+var page=""
 
 app.use(cookieparser())
 app.use(bodyparser())
@@ -55,8 +56,7 @@ router.post('/set',(req,res)=>{
 })
 
 router.post('/start',(req,res)=>{
-    
-    let page = ""
+
     let active = members.findIndex(item=>{return item==req.cookies.id}) 
     if (active==req.body.active){
         page = "/active"
@@ -75,7 +75,7 @@ router.post('/close',(req,res)=>{
 })
 
 router.post('/polling',(req,res)=>{
-    res.json({message:message,members:members,count:count})
+    res.json({message:message,members:members,count:count,page:page})
 })
 
 
