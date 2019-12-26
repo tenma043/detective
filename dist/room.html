@@ -54,6 +54,7 @@
                       <v-form>
                       <v-card-text>
                         There are {{count}} players
+                      </v-card-text>
                         <v-radio-group lebel="Choose Active Player" v-model="active">
                           <v-radio
                             v-for="(member,index) in members"
@@ -62,7 +63,6 @@
                             :value="index"
                           ></v-radio>
                         </v-radio-group>
-                      </v-card-text>
                         
                       <v-card-actions class="justify-center">
                       <v-btn @click="start" color="primary">Start</v-btn>
