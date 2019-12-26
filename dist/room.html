@@ -51,7 +51,7 @@
                         height="40"
                       >
                       </v-toolbar>
-                      <v-form method="GET" action="/.netlify/functions/app/send">
+                      <v-form>
                       <v-card-text>
                         There are {{count}} players
                         <v-radio-group v-model="active">
@@ -65,7 +65,7 @@
                       </v-card-text>
                         
                       <v-card-actions class="justify-center">
-                      <v-btn type="submit" color="primary">Send</v-btn>
+                      <v-btn @click="start" color="primary">Start</v-btn>
                       </v-card-actions>
                     </v-form>
                     <v-card-actions class="justify-center">
@@ -104,6 +104,7 @@
                 drawer: null,
                 count: 0,
                 members: null,
+                active: 0,
                 }),
         methods: {
           set: function(){
