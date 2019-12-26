@@ -68,7 +68,7 @@ router.post('/start',(req,res)=>{
 
 router.post('/close',(req,res)=>{
     let myindex = members.findIndex(item=>{return item==req.cookies.id}) 
-    members.slice(myindex,1)
+    members.splice(myindex,1)
     count-=1
     res.json({})
 })
