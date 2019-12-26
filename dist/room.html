@@ -33,7 +33,10 @@
         
             <v-content >
               <v-container fluid overflow-y:auto>
-                
+                <v-radio-group v-model="radios" :mandatory="false">
+                  <v-radio label="Radio 1" value="radio-1"></v-radio>
+                  <v-radio label="Radio 2" value="radio-2"></v-radio>
+                </v-radio-group>
                       <v-row
                   align="center"
                   justify="center"
@@ -43,10 +46,7 @@
                     sm="4"
                     md="3"
                   >
-                  <v-radio-group v-model="radios" :mandatory="false">
-                    <v-radio label="Radio 1" value="radio-1"></v-radio>
-                    <v-radio label="Radio 2" value="radio-2"></v-radio>
-                  </v-radio-group>
+                  
                     <v-card class="elevation-12">
                       <v-toolbar
                         color="primary"
