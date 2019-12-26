@@ -56,11 +56,11 @@
                       <v-card-text>
                         There are {{count}} players
                       </v-card-text>
-                        <v-radio-group lebel="Choose Active Player" v-model="active">
+                        <v-radio-group label="Choose Active Player" v-model="active" justify="center">
                           <v-radio
                             v-for="(member,index) in members"
                             :key="index"
-                            :label="`Radio ${member}`"
+                            :label="member"
                             :value="index"
                           ></v-radio>
                         </v-radio-group>
