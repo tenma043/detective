@@ -9,6 +9,7 @@ process.env.SILENCE_EMPTY_LAMBDA_WARNING=true
 var count=0
 var message="Waiting"
 var members=[]
+var roles=[]
 
 app.use(cookieparser())
 app.use(bodyparser())
@@ -40,6 +41,7 @@ router.get('/game1',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
     res.sendFile('game.html',{root:root})
 })
+
 router.post('/join',(req,res)=>{
     count+=1
     members[count-1]=req.body.id
@@ -49,8 +51,19 @@ router.post('/join',(req,res)=>{
 
 router.post('/set',(req,res)=>{
     message = req.body.message
-    console.log(req.cookies.id)
     res.json({message:message})
+})
+
+router.post('/start',(req,res)=>{
+    let page = ""
+    let active = members.findIndex(item=>{return item==req.cookies.id}) 
+    if (active==req.body.active){
+        page = "/active"
+    }
+    else {
+        page = "/player"
+    }
+    res.json({page:page})
 })
 
 router.post('/close',(req,res)=>{

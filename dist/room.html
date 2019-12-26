@@ -119,6 +119,13 @@
           .then((res)=>{
             this.message=res.data.message
            })  
+          },
+          start: function(){
+            console.log("ACTIVE =",this.active)
+            axios.post("/.netlify/functions/app/start",{active:this.active})
+          .then((res)=>{
+            window.location.replace(res.data.page);
+           })  
           }
         },
         created() {
