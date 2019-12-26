@@ -9,10 +9,12 @@ process.env.SILENCE_EMPTY_LAMBDA_WARNING=true
 var count=0
 var message="Waiting"
 var members=[]
-var roles=[]
+var role="Detective"
 var page=""
 var start=false
 var active=0
+var word=""
+var end=false
 
 app.use(cookieparser())
 app.use(bodyparser())
@@ -52,9 +54,9 @@ router.post('/join',(req,res)=>{
     res.json({})
 })
 
-router.post('/set',(req,res)=>{
-    message = req.body.message
-    res.json({message:message})
+router.post('/send',(req,res)=>{
+    word = req.body.word
+    res.json({word:word})
 })
 
 router.post('/start',(req,res)=>{
@@ -71,6 +73,12 @@ router.post('/close',(req,res)=>{
     res.json({})
 })
 
+router.post('/end',(req,res)=>{
+    word=""
+    page=""
+    end=true
+    res.json({})
+})
 
 router.post('/reset',(req,res)=>{
     count=0
@@ -96,6 +104,10 @@ router.post('/polling',(req,res)=>{
     res.json({message:message,members:members,count:count,page:page})
 })
 
+router.post('/polling2',(req,res)=>{
+    if(end){page="/room"}
+    res.json({role:role,word:word,page:page})
+})
 
 module.exports = app
 module.exports.handler = serverless(app)
