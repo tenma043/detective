@@ -33,9 +33,13 @@ router.get('/',(req,res)=>{
 
 router.get('/room',(req,res)=>{
     let root=path.join(__dirname,'../source/myapp/dist')
-    res.sendFile('room2.html',{root:root})
+    res.sendFile('room.html',{root:root})
 })
 
+router.get('/game1',(req,res)=>{
+    let root=path.join(__dirname,'../source/myapp/dist')
+    res.sendFile('game.html',{root:root})
+})
 router.post('/join',(req,res)=>{
     count+=1
     members[count-1]=req.body.id
