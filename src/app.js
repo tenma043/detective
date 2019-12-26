@@ -12,6 +12,7 @@ var members=[]
 var roles=[]
 var page=""
 var start=false
+var active=0
 
 app.use(cookieparser())
 app.use(bodyparser())
@@ -57,6 +58,7 @@ router.post('/set',(req,res)=>{
 })
 
 router.post('/start',(req,res)=>{
+    active=req.body.active
     start=true
     res.json({page:page})
 })
@@ -83,8 +85,8 @@ router.post('/reset',(req,res)=>{
 
 router.post('/polling',(req,res)=>{
     if(start){
-    let active = members.findIndex(item=>{return item==req.cookies.id}) 
-    if (active==req.body.active){
+    let myindex = members.findIndex(item=>{return item==req.cookies.id}) 
+    if (myindex==active){
         page = "/active"
     }
     else {

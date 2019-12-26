@@ -123,9 +123,8 @@
           },
           start: function(){
             console.log("ACTIVE =",this.active)
-            axios.post("/.netlify/functions/app/start")
+            axios.post("/.netlify/functions/app/start",{active:this.active})
           .then((res)=>{
-            this.startpage = res.data.page
            })  
           }
         },
