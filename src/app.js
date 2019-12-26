@@ -87,6 +87,7 @@ router.post('/reset',(req,res)=>{
     roles=[]
     page=""
     start=false
+    end=false
     res.json({})
 })
 
