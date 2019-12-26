@@ -31,12 +31,16 @@ router.get('/',(req,res)=>{
     res.sendFile('home.html',{root:root})
 })
 
-router.post('/room',(req,res)=>{
+router.get('/room',(req,res)=>{
+    let root=path.join(__dirname,'../source/myapp/dist')
+    res.sendFile('room.html',{root:root})
+})
+
+router.post('/join',(req,res)=>{
     count+=1
     members[count-1]=req.body.id
     res.cookie('id',req.body.id,{MaxAge:1000*60*60})
-    let root=path.join(__dirname,'../source/myapp/dist')
-    res.sendFile('room.html',{root:root})
+    res.json({})
 })
 
 router.post('/set',(req,res)=>{

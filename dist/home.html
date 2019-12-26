@@ -53,9 +53,10 @@
                         height="40"
                       >
                       </v-toolbar>
-                      <v-form method="POST" action="/.netlify/functions/app/room">
+                      <v-form>
                       <v-card-text>
                           <v-text-field
+                          v-model="name"
                           label="Display Name"
                           name="id"
                           type="text"
@@ -72,7 +73,7 @@
                      /></v-card-text> -->
                         
                       <v-card-actions class="justify-center">
-                      <v-btn type="submit" color="primary">Join</v-btn>
+                      <v-btn @click="join" color="primary">Join</v-btn>
                       </v-card-actions>
                     </v-form>
                       
@@ -103,6 +104,7 @@
                 source: String,
                 },
         data: () => ({
+                name: "",
                 message: "Waiting",
                 newmessage: "SomethingNew",
                 role: "No Role2",
@@ -112,10 +114,16 @@
           set: function(){
             console.log(this.newmessage)
             axios.post("/.netlify/functions/app/set",{message:this.newmessage})
-          .then((res)=>{
+            .then((res)=>{
             this.message=res.data.message
            })     
           },
+          join: function(){
+            axios.post("/.netlify/functions/app/join",{id:this.name})
+            .then((res)=>{
+              window.location.replace("/.netlify/functions/app/room");
+            })
+          }
         },
         created() {
           // setInterval(()=>{
