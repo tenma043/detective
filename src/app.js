@@ -55,6 +55,7 @@ router.post('/set',(req,res)=>{
 })
 
 router.post('/start',(req,res)=>{
+    
     let page = ""
     let active = members.findIndex(item=>{return item==req.cookies.id}) 
     if (active==req.body.active){
