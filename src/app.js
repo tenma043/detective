@@ -62,6 +62,7 @@ router.post('/send',(req,res)=>{
 
 router.post('/start',(req,res)=>{
     active=req.body.active
+    end=false
     start=true
     res.json({page:page})
 })
