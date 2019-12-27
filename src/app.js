@@ -52,7 +52,7 @@ router.get('/game1',(req,res)=>{
 router.post('/join',(req,res)=>{
     count+=1
     members[count-1]=req.body.id
-    res.cookie('id',req.body.id,{MaxAge:1000*60*60})
+    res.cookie('id',count-1,{MaxAge:1000*60*60})
     res.json({})
 })
 
@@ -73,8 +73,7 @@ router.post('/start',(req,res)=>{
 })
 
 router.post('/close',(req,res)=>{
-    let myindex = members.findIndex(item=>{return item==req.cookies.id}) 
-    members.splice(myindex,1)
+    members.splice(req.cookies.id,1)
     count-=1
     res.json({})
 })
@@ -107,8 +106,7 @@ router.post('/reset',(req,res) => {
 
 router.post('/polling',(req,res)=>{
     if(start){
-    let myindex = members.findIndex(item=>{return item==req.cookies.id}) 
-    if (myindex==active){
+    if (req.cookies.id==active){
         page = "/active"
     }
     else {
@@ -119,8 +117,7 @@ router.post('/polling',(req,res)=>{
 })
 
 router.post('/role',(req,res)=>{
-    let myindex = members.findIndex(item=>{return item==req.cookies.id})
-    if(myindex==rand){
+    if(req.cookies.id==rand){
         role="Conspirator"
     }
     else{
