@@ -115,6 +115,7 @@
         created() {
           axios.post('/.netlify/functions/app/role')
           .then((res)=>{
+            console.log(res.data.rand)
             this.role=res.data.role
             if(this.role="Detective"){
               this.preword = "The word is ... "

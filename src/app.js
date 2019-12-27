@@ -123,7 +123,7 @@ router.post('/role',(req,res)=>{
     else{
         role="Detective"
     }
-    res.json({role:role})
+    res.json({role:role,rand:rand})
 })
 
 router.post('/polling2',(req,res)=>{
