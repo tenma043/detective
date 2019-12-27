@@ -68,6 +68,7 @@ router.post('/start',(req,res)=>{
     if(rand==active){
         rand=count
     }
+    page2=""
     end=false
     start=true
     res.json({page:page})
@@ -86,7 +87,6 @@ router.post('/end',(req,res)=>{
     end=true
     active=-1
     rand=-1
-    page2=""
     res.json({})
 })
 
