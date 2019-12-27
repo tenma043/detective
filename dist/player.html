@@ -50,7 +50,7 @@
                       <v-card-text style="font-size:18" align="center">
                         You Are <h>{{role}}</h> !
                         <br>
-                        The word is ... <h>{{word}}</h>
+                        {{preword}} <h>{{word}}</h>
                       </v-card-text>
                       
                     </v-card>
@@ -89,6 +89,7 @@
                 nextpage: "",
                 role: "",
                 word: "",
+                preword: "",
                 }),
         methods: {
           set: function(){
@@ -112,12 +113,23 @@
           }
         },
         created() {
+          axios.post('/.netlify/functions/app/role')
+          .then((res)=>{
+            this.role=res.data.role
+            if(this.role="Detective"){
+              this.preword = "The word is ... "
+            }
+            else{
+              this.preword = "Find this word!"
+            }
+           })  
           interval = setInterval(()=>{
             axios.post('/.netlify/functions/app/polling2',{active:this.active})
           .then((res)=>{
-            this.word=res.data.word
-            this.role=res.data.role
-            this.nextpage=res.data.page    
+            if(this.role="Detective"){
+              this.word=res.data.word
+            }
+            this.nextpage=res.data.page  
             if(this.nextpage!=""){
                 clearInterval(interval)
                 window.location.replace(this.nextpage);

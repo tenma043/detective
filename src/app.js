@@ -9,13 +9,14 @@ process.env.SILENCE_EMPTY_LAMBDA_WARNING=true
 var count=0
 var message="Waiting"
 var members=[]
-var role="Detective"
+var role=""
 var page=""
 var page2=""
 var start=false
 var active=0
 var word=""
 var end=false
+var rand=-1
 
 app.use(cookieparser())
 app.use(bodyparser())
@@ -62,6 +63,10 @@ router.post('/send',(req,res)=>{
 
 router.post('/start',(req,res)=>{
     active=req.body.active
+    rand = Math.floor(Math.random() * count-1);
+    if(rand==active){
+        rand==count
+    }
     end=false
     start=true
     res.json({page:page})
@@ -79,6 +84,7 @@ router.post('/end',(req,res)=>{
     page=""
     start=false
     end=true
+    rand=-1
     res.json({})
 })
 
@@ -86,13 +92,14 @@ router.post('/reset',(req,res) => {
     count=0
     message="Waiting"
     members=[]
-    role="Detective"
+    role=""
     page=""
     page2=""
     start=false
     active=0
     word=""
     end=false
+    rand=-1
     res.json({})
 })
 
@@ -108,6 +115,17 @@ router.post('/polling',(req,res)=>{
     }
     }
     res.json({message:message,members:members,count:count,page:page})
+})
+
+router.post('/role',(req,res)=>{
+    let myindex = members.findIndex(item=>{return item==req.cookies.id})
+    if(myindex==rand){
+        role="Conspirator"
+    }
+    else{
+        role="Detective"
+    }
+    res.json({role:role})
 })
 
 router.post('/polling2',(req,res)=>{
