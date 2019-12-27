@@ -48,7 +48,7 @@
                     <v-card class="elevation-12">
 
                       <v-card-text style="font-size:18" align="center">
-                        You Are <b style="color:darkred">{{role}}</b> !
+                      {{youare}} <b style="color:darkred">{{role}}</b>
                         <br>
                         {{preword}} <b>{{word}}</b>
                       </v-card-text>
@@ -89,7 +89,8 @@
                 nextpage: "",
                 role: "",
                 word: "",
-                preword: "",
+                preword: "Waiting for Active Player ...",
+                youare: ""
                 }),
         methods: {
           set: function(){
@@ -116,19 +117,21 @@
           axios.post('/.netlify/functions/app/role')
           .then((res)=>{
             console.log(res.data.check,res.data.rand,res.data.role)
-            this.role=res.data.role
-            if(this.role=="Detective"){
-              this.preword = "The word is ... "
-            }
-            else{
-              this.preword = "Find this word!"
-            }
+            this.prerole=res.data.role
            })  
           interval = setInterval(()=>{
             axios.post('/.netlify/functions/app/polling2',{active:this.active})
           .then((res)=>{
-            if(this.role=="Detective"){
-              this.word=res.data.word
+            if(res.data.word!=""){
+                this.youare = "You are"
+                this.role=this.prerole
+                if(this.role=="Detective"){
+                this.preword = "The word is ... "
+                this.word=res.data.word
+                }
+                else{
+                this.preword = "Find this word!"
+                }
             }
             this.nextpage=res.data.page  
             if(this.nextpage!=""){
