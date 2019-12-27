@@ -63,7 +63,8 @@ router.post('/send',(req,res)=>{
 
 router.post('/start',(req,res)=>{
     active=req.body.active
-    rand = Math.floor(Math.random() * count-1);
+    let c = count-1
+    rand = Math.floor(Math.random() * c);
     if(rand==active){
         rand==count
     }
