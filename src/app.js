@@ -118,13 +118,14 @@ router.post('/polling',(req,res)=>{
 })
 
 router.post('/role',(req,res)=>{
-    if(req.cookies.id===0){
+    let check = req.cookies.id
+    if(check==rand){
         role="Conspirator"
     }
     else{
         role="Detective"
     }
-    res.json({role:role,rand:rand})
+    res.json({role:role,rand:rand,check:check})
 })
 
 router.post('/polling2',(req,res)=>{
