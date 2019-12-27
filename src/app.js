@@ -13,7 +13,7 @@ var role=""
 var page=""
 var page2=""
 var start=false
-var active=0
+var active=-1
 var word=""
 var end=false
 var rand=-1
@@ -84,6 +84,7 @@ router.post('/end',(req,res)=>{
     page=""
     start=false
     end=true
+    active=-1
     rand=-1
     res.json({})
 })
@@ -96,7 +97,7 @@ router.post('/reset',(req,res) => {
     page=""
     page2=""
     start=false
-    active=0
+    active=-1
     word=""
     end=false
     rand=-1
