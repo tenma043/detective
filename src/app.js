@@ -118,7 +118,7 @@ router.post('/polling',(req,res)=>{
 })
 
 router.post('/role',(req,res)=>{
-    let check = req.cookies.id
+    let check = parseInt(req.cookies.id,10)
     if(check==rand){
         role="Conspirator"
     }
