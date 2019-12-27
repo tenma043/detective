@@ -66,7 +66,7 @@ router.post('/start',(req,res)=>{
     let c = count-1
     rand = Math.floor(Math.random() * c);
     if(rand==active){
-        rand=count
+        rand=c
     }
     page2=""
     end=false
