@@ -133,7 +133,7 @@ router.post('/role',(req,res)=>{
 
 router.post('/polling2',(req,res)=>{
     if(end){page2="/room"}
-    res.json({role:role,word:word,page:page2})
+    res.json({word:word,page:page2})
 })
 
 module.exports = app
