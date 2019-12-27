@@ -129,7 +129,7 @@
           interval = setInterval(()=>{
             axios.post('/.netlify/functions/app/polling2',{active:this.active})
           .then((res)=>{
-            if(this.role="Detective"){
+            if(this.role=="Detective"){
               this.word=res.data.word
             }
             this.nextpage=res.data.page  
