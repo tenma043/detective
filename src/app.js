@@ -86,6 +86,7 @@ router.post('/end',(req,res)=>{
     end=true
     active=-1
     rand=-1
+    page2=""
     res.json({})
 })
 
