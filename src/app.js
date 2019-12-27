@@ -118,7 +118,7 @@ router.post('/polling',(req,res)=>{
 })
 
 router.post('/role',(req,res)=>{
-    if(req.cookies.id==rand){
+    if(req.cookies.id===rand){
         role="Conspirator"
     }
     else{
