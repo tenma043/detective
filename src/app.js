@@ -81,6 +81,7 @@ router.post('/close',(req,res)=>{
 })
 
 router.post('/end',(req,res)=>{
+    role=""
     word=""
     page=""
     start=false
